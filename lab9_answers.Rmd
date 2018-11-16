@@ -1,0 +1,108 @@
+---
+title: "Lab9"
+author: "Joseph Kabariti"
+date: "November 11, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1: odd_count_vectorized
+```{r}
+odd_count_vectorized = function(x) {
+  odd_num = sum(x %% 2)
+  return(odd_num)
+}
+```
+
+2.
+```{r}
+sort_vec = function(x, ascending=TRUE) {
+  if (length(x) < 2) 
+    return (x)
+  
+  for(last in length(x):2) {
+    for(first in 1:(last - 1)) {
+      if (ascending == TRUE) {
+        if(x[first] > x[first + 1]) {
+          temp = x[first]
+          x[first] = x[first + 1]
+          x[first + 1] = temp
+        }
+      }
+      else if (ascending == FALSE) {
+        if(x[first] < x[first + 1]) {
+          temp = x[first]
+          x[first] = x[first + 1]
+          x[first + 1] = temp
+        }
+      }
+      }
+    }
+return(x)
+}
+
+
+sort_vec(c(3,1,2), ascending=FALSE)
+```
+
+3:
+N= 1000
+```{r}
+N = 1000
+data_series = 0
+system.time({for (i in 2:N){
+  data_series[i] = data_series[i-1] + sample(c(-1, 1), 1)
+}
+})
+
+data_series_pre = numeric(N)
+data_series_pre[1] = 0
+
+system.time({for (i in 2:N){
+  data_series_pre[i] = data_series_pre[i-1] + sample(c(-1, 1), 1)
+}
+})
+```
+
+N=10000
+```{r}
+N = 10000
+data_series = 0
+system.time({for (i in 2:N){
+  data_series[i] = data_series[i-1] + sample(c(-1, 1), 1)
+}
+})
+
+data_series_pre = numeric(N)
+data_series_pre[1] = 0
+
+system.time({for (i in 2:N){
+  data_series_pre[i] = data_series_pre[i-1] +sample(c(-1, 1), 1)
+}
+})
+```
+
+
+N=1000000
+```{r}
+N = 1000000
+data_series = 0
+system.time({for (i in 2:N){
+  data_series[i] = data_series[i-1] + sample(c(-1, 1), 1)
+}
+})
+
+data_series_pre = numeric(N)
+data_series_pre[1] = 0
+
+system.time({for (i in 2:N){
+  data_series_pre[i] = data_series_pre[i-1] + sample(c(-1, 1), 1)
+}
+})
+```
+
+
+
